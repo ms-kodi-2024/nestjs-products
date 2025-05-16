@@ -1,40 +1,58 @@
 import { Injectable } from '@nestjs/common';
-import { Product } from '@prisma/client';
 import { PrismaService } from '../shared/services/prisma.service';
 
 @Injectable()
 export class ProductsService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  public getAll(): Promise<Product[]> {
+  public getAll() {
     return this.prismaService.product.findMany();
   }
 
-  public getById(id: Product['id']): Promise<Product | null> {
+  public getById(id: string) {
     return this.prismaService.product.findUnique({
       where: { id },
     });
   }
 
-  public create(
-    productData: Omit<Product, 'id' | 'createdAt' | 'updatedAt'>,
-  ): Promise<Product> {
+  public getAllExtended() {
+    return this.prismaService.product.findMany({
+      include: { orders: true },
+    });
+  }
+
+  public getExtendedById(id: string) {
+    return this.prismaService.product.findUnique({
+      where: { id },
+      include: { orders: true },
+    });
+  }
+
+  public create(productData: {
+    name: string;
+    price: number;
+    description: string;
+  }) {
     return this.prismaService.product.create({
       data: productData,
     });
   }
 
   public updateById(
-    id: Product['id'],
-    productData: Omit<Product, 'id' | 'createdAt' | 'updatedAt'>,
-  ): Promise<Product> {
+    id: string,
+    productData: {
+      name: string;
+      price: number;
+      description: string;
+    },
+  ) {
     return this.prismaService.product.update({
       where: { id },
       data: productData,
     });
   }
 
-  public deleteById(id: Product['id']): Promise<Product> {
+  public deleteById(id: string) {
     return this.prismaService.product.delete({
       where: { id },
     });

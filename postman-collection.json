@@ -1,6 +1,6 @@
 {
   "info": {
-    "name": "Nest API (Products & Orders)",
+    "name": "Products & Orders - extended",
     "_postman_id": "f8e5ec62-7ef2-4be5-98cf-d90b2641cf78",
     "description": "Converted from Thunder Client",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -49,6 +49,43 @@
       },
       "response": []
     },
+    {
+      "name": "GET extended products",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/products/extended",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "products", "extended"]
+        },
+        "body": {}
+      },
+      "response": []
+    },    
+    {
+      "name": "GET extended product by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/products/extended/01c7599d-318b-4b9f-baf7-51f3a936a2d4",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": [
+            "api",
+            "products",
+            "extended",
+            "01c7599d-318b-4b9f-baf7-51f3a936a2d4"
+          ]
+        },
+        "body": {}
+      },
+      "response": []
+    },           
     {
       "name": "POST new product",
       "request": {
